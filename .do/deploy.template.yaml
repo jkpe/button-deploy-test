@@ -7,34 +7,34 @@ spec:
   ingress:
     rules:
     - component:
-        name: nginx
+        name: button-deploy-test-nginx
       match:
         path:
           prefix: /
     - component:
-        name: nginx2
+        name: service
       match:
         path:
-          prefix: /nginx2
-  name: king-prawn-app
+          prefix: /service
+  name: hammerhead-app
   region: lon
   services:
-  - http_port: 80
-    image:
-      registry: library
-      registry_type: DOCKER_HUB
-      repository: nginx
-      tag: latest
+  - dockerfile_path: Dockerfile
+    github:
+      branch: nginx
+      repo: jkpe/button-deploy-test
+    http_port: 80
     instance_count: 1
     instance_size_slug: professional-xs
-    name: nginx
-  - http_port: 80
-    image:
-      registry: library
-      registry_type: DOCKER_HUB
-      repository: nginx
-      tag: latest
+    name: button-deploy-test-nginx
+    source_dir: nginx
+  - dockerfile_path: Dockerfile
+    github:
+      branch: nginx
+      repo: jkpe/button-deploy-test
+    http_port: 80
     instance_count: 1
     instance_size_slug: professional-xs
-    name: nginx2
+    name: service
+    source_dir: nginx-1
   
