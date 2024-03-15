@@ -7,34 +7,31 @@ spec:
   ingress:
     rules:
     - component:
-        name: button-deploy-test-nginx
+        name: nginx
       match:
         path:
           prefix: /
     - component:
-        name: service
+        name: nginx-1
       match:
         path:
           prefix: /service
   name: hammerhead-app
   region: lon
   services:
-  - dockerfile_path: Dockerfile
+  - dockerfile_path: nginx-1/Dockerfile
     github:
       branch: nginx
       repo: jkpe/button-deploy-test
     http_port: 80
     instance_count: 1
     instance_size_slug: professional-xs
-    name: button-deploy-test-nginx
-    source_dir: nginx
-  - dockerfile_path: Dockerfile
+    name: nginx-1
+  - dockerfile_path: nginx/Dockerfile
     github:
       branch: nginx
       repo: jkpe/button-deploy-test
     http_port: 80
     instance_count: 1
     instance_size_slug: professional-xs
-    name: service
-    source_dir: nginx-1
-  
+    name: nginx
